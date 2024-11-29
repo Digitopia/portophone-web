@@ -84,7 +84,7 @@ function definirZonas() {
     ou seja, vai ser feito mapping da proporção de 16:9 1920x1080 para o tamanho real */
 
     //BATALHA
-    zonaMapa[0] = new Zona(0, 1500, 810, 200)
+    zonaMapa[0] = new Zona(0, 1500, 790, 230)
 
     //BOLHAO
     zonaMapa[1] = new Zona(1, 880, 200, 150)
@@ -96,16 +96,16 @@ function definirZonas() {
     zonaMapa[3] = new Zona(3, 170, 200, 100)
 
     //PARQUE DA CIDADE
-    zonaMapa[4] = new Zona(4, 520, 600, 200)
+    zonaMapa[4] = new Zona(4, 520, 600, 260)
 
     //RIBEIRA
-    zonaMapa[5] = new Zona(5, 0, 600, 200)
+    zonaMapa[5] = new Zona(5, 0, 470, 230)
 
     //SANTA CATARINA
-    zonaMapa[6] = new Zona(6, 1330, 320, 170)
+    zonaMapa[6] = new Zona(6, 1330, 320, 180)
 
     //SERRALVES
-    zonaMapa[7] = new Zona(7, 820, 900, 170)
+    zonaMapa[7] = new Zona(7, 820, 920, 190)
 }
 
 function definirHelpSwitch() {

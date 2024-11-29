@@ -12,7 +12,7 @@ class Zona {
         this.cor;
 
         this.growCircle = 0
-        this.growAmount = this.raio / 50
+        this.growAmount = this.raio / 70
 
         this.ativa = false;
 
@@ -27,9 +27,9 @@ class Zona {
         if (this.ativa == true) {
             this.drawCircle();
 
-            //fade in do círculo
-            if (this.alpha < 80)
-                this.alpha++
+            //fade in do círculo   
+            if (this.alpha < 180) // máximo de transparência
+                this.alpha += 3
         }
 
 
@@ -40,7 +40,7 @@ class Zona {
             this.drawCircle();
 
             if (this.alpha > 0)
-                this.alpha--
+                this.alpha -= 3
 
             if (this.clock - this.checkClock > this.fadeTime_Out * 1000) {
                 sonsMapa[this.indexZona][this.indexSom].stop();
@@ -63,7 +63,7 @@ class Zona {
     }
 
     drawCircle() {
-        this.cor = color(130, 35, 75, this.alpha)
+        this.cor = color(110, 55, 85, this.alpha)
 
         noStroke();
         fill(this.cor)
