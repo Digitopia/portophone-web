@@ -43,7 +43,7 @@ function loadSoundsZonas() {
     }
 
     //sons da zona 2
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
         sonsMapa[2][i] = loadSound(`./data/sounds/casa_musica/casa_musica_${i + 1}.mp3`)
     }
 
