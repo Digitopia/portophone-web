@@ -5,7 +5,7 @@ let debug = false;
 let somHelp, somSwitch_on, somSwitch_off;
 
 
-let zonasNum = 8 // EDITÁVEL: numero de zonas a usar
+let zonasNum = 10 // EDITÁVEL: numero de zonas a usar
 
 let zonaMapa = new Array(zonasNum);
 let sonsMapa = new Array(zonaMapa.length);
@@ -57,19 +57,29 @@ function loadSoundsZonas() {
         sonsMapa[4][i] = loadSound(`./data/sounds/parque_cidade/parque_cidade_${i + 1}.mp3`)
     }
 
-    //sons da zona 5
+    //sons da zona 5 — ribeira bloco 1
     for (let i = 0; i < 3; i++) {
         sonsMapa[5][i] = loadSound(`./data/sounds/ribeira/ribeira_${i + 1}.mp3`)
     }
 
-    //sons da zona 6
+    //sons da zona 6 — ribeira bloco 2
     for (let i = 0; i < 3; i++) {
-        sonsMapa[6][i] = loadSound(`./data/sounds/santa_catarina/santa_catarina_${i + 1}.mp3`)
+        sonsMapa[6][i] = loadSound(`./data/sounds/ribeira/ribeira_${i + 1}.mp3`)
     }
 
-    //sons da zona 7
+    //sons da zona 7 — ribeira bloco 3
+    for (let i = 0; i < 3; i++) {
+        sonsMapa[7][i] = loadSound(`./data/sounds/ribeira/ribeira_${i + 1}.mp3`)
+    }
+
+    //sons da zona 8
+    for (let i = 0; i < 3; i++) {
+        sonsMapa[8][i] = loadSound(`./data/sounds/santa_catarina/santa_catarina_${i + 1}.mp3`)
+    }
+
+    //sons da zona 9
     for (let i = 0; i < 2; i++) {
-        sonsMapa[7][i] = loadSound(`./data/sounds/serralves/serralves_${i + 1}.mp3`)
+        sonsMapa[9][i] = loadSound(`./data/sounds/serralves/serralves_${i + 1}.mp3`)
     }
 
 }
@@ -84,7 +94,7 @@ function definirZonas() {
     ou seja, vai ser feito mapping da proporção de 16:9 1920x1080 para o tamanho real */
 
     //BATALHA
-    zonaMapa[0] = new Zona(0, 1500, 790, 230)
+    zonaMapa[0] = new Zona(0, 1500, 790, 250)
 
     //BOLHAO
     zonaMapa[1] = new Zona(1, 880, 200, 150)
@@ -96,16 +106,65 @@ function definirZonas() {
     zonaMapa[3] = new Zona(3, 170, 200, 100)
 
     //PARQUE DA CIDADE
-    zonaMapa[4] = new Zona(4, 520, 600, 260)
+    zonaMapa[4] = new Zona(4, 520, 600, 280)
 
-    //RIBEIRA
+    //RIBEIRA — bloco 1
     zonaMapa[5] = new Zona(5, 0, 470, 230)
 
+    //RIBEIRA — bloco 2
+    zonaMapa[6] = new Zona(6, 0, 810, 230)
+
+    //RIBEIRA — bloco 3
+    zonaMapa[7] = new Zona(7, 220, 1080, 210)
+
     //SANTA CATARINA
-    zonaMapa[6] = new Zona(6, 1330, 320, 180)
+    zonaMapa[8] = new Zona(8, 1330, 320, 180)
 
     //SERRALVES
-    zonaMapa[7] = new Zona(7, 820, 920, 190)
+    zonaMapa[9] = new Zona(9, 820, 920, 200)
+}
+
+function condicionantesZonas(zonaIndex) {
+
+    /* EDITÁVEL: condições para zonas que são constituídas por blocos i.e., várias zonas
+       
+    if (zonaIndex == 1º bloco da zona — index dessa zona) {
+        if (zonaMapa[2º bloco — index dessa zona].ativa == true || zonaMapa[3º bloco — index dessa zona].ativa == true) {
+            condicionante = true;
+        }
+        else
+            condicionante = false;
+    }
+
+    !!! de seguida é preciso fazer isto com "else if" para todos os blocos da zona
+
+    */
+
+    // a variável condicionante começa como falsa e depois altera o seu valor caso a zona em questão esteja proposta para condicionantes
+    let condicionante = false;
+
+    // BLOCO DE ZONAS RIBEIRA
+    if (zonaIndex == 5) {
+        if (zonaMapa[6].ativa == true || zonaMapa[7].ativa == true) {
+            condicionante = true;
+        }
+        else
+            condicionante = false;
+    } else if (zonaIndex == 6) {
+        if (zonaMapa[5].ativa == true || zonaMapa[7].ativa == true) {
+            condicionante = true;
+        }
+        else
+            condicionante = false;
+    } else if (zonaIndex == 7) {
+        if (zonaMapa[5].ativa == true || zonaMapa[6].ativa == true) {
+            condicionante = true;
+        }
+        else
+            condicionante = false;
+    }
+
+    return condicionante;
 }
 
 function definirHelpSwitch() {

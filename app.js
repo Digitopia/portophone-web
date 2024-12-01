@@ -119,8 +119,17 @@ function mousePressed() {
             if (dist(mouseX, mouseY, zonaMapa[i].x, zonaMapa[i].y) <= zonaMapa[i].raio) {
                 zonaMapa[i].ativa = !zonaMapa[i].ativa;
 
-                if (zonaMapa[i].ativa)
-                    zonaMapa[i].playSound();
+                if (zonaMapa[i].ativa) {
+                    //no caso de zonas que são constituídas por blocos (i.e.várias zonas) apenas um bloco pode estar ativo
+                    let ativar = condicionantesZonas(i);
+
+                    if (!ativar)
+                        zonaMapa[i].playSound();
+                    else
+                        //no caso de zonas que são constituídas por blocos caso algum bloco já esteja ativo o novo bloco que foi clickado mantém-se off
+                        zonaMapa[i].ativa = false;
+                }
+
                 else
                     zonaMapa[i].stopSounds();
             }
